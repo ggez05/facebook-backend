@@ -187,6 +187,24 @@ exports.findUser = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+exports.getfiveusers = async (req, res) => {
+  try {
+    const user = await User.find({})
+      .limit(5)
+      .select("picture : 1, username : 1");
+    if (!user) {
+      return res.status(400).json({
+        message: "No users to display",
+      });
+    }
+    console.log(user);
+    return res.status(200).json({
+      users: user,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 
 exports.sendResetPasswordCode = async (req, res) => {
   try {

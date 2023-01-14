@@ -5,6 +5,7 @@ const {
   login,
   auth,
   sendVerification,
+  getfiveusers,
   findUser,
   sendResetPasswordCode,
   validateResetCode,
@@ -33,6 +34,8 @@ const router = express.Router();
 router.post("/register", register);
 router.post("/activate", authUser, activateAccount);
 router.post("/login", login);
+router.get("/getfiveusers", getfiveusers);
+
 router.post("/sendVerification", authUser, sendVerification);
 router.post("/findUser", findUser);
 router.post("/sendResetPasswordCode", sendResetPasswordCode);
