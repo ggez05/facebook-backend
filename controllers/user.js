@@ -187,6 +187,24 @@ exports.findUser = async (req, res) => {
     res.status(500).json({ message: error.message });
   }
 };
+exports.findUserusingid = async (req, res) => {
+  try {
+    const id = req.params.id;
+    const user = await User.findById(id).select(
+      "-password -following -details -followers -requests -search -savedPosts -friends"
+    );
+    if (!user) {
+      return res.status(400).json({
+        message: "Account does not exists.",
+      });
+    }
+    return res.status(200).json({
+      user,
+    });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
 exports.getfiveusers = async (req, res) => {
   try {
     const user = await User.find({})
@@ -197,7 +215,6 @@ exports.getfiveusers = async (req, res) => {
         message: "No users to display",
       });
     }
-    console.log(user);
     return res.status(200).json({
       users: user,
     });

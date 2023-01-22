@@ -7,6 +7,7 @@ const {
   sendVerification,
   getfiveusers,
   findUser,
+  findUserusingid,
   sendResetPasswordCode,
   validateResetCode,
   changePassword,
@@ -38,6 +39,8 @@ router.get("/getfiveusers", getfiveusers);
 
 router.post("/sendVerification", authUser, sendVerification);
 router.post("/findUser", findUser);
+router.get("/findUserbyid/:id", findUserusingid);
+
 router.post("/sendResetPasswordCode", sendResetPasswordCode);
 router.post("/validateResetCode", validateResetCode);
 router.post("/changePassword", changePassword);
